@@ -48,4 +48,23 @@ public class ProductoTableModel extends AbstractTableModel{
                 return Object.class;
         }
     }
+     @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Producto producto = productos.get(rowIndex);
+        switch (columnIndex) {
+            case 0:
+                return producto.getNombre();
+            case 1:
+                return producto.getCategoria();
+            case 2:
+                return producto.getPrecio();
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+    }
 }
