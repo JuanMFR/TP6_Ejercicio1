@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author JuanmaPC
+ * @author JuanmaPC, nahuelguerra
  */
 public class ProductoTableModel extends AbstractTableModel{
     private final String[] columnNames = {"Nombre", "Categoría", "Precio"};
@@ -66,5 +66,25 @@ public class ProductoTableModel extends AbstractTableModel{
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
+    }
+
+    public void agregarProducto(Producto producto) {
+        productos.add(producto);
+        fireTableRowsInserted(productos.size() - 1, productos.size() - 1);
+    }
+
+    public void eliminarProducto(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < productos.size()) {
+            productos.remove(rowIndex);
+            fireTableRowsDeleted(rowIndex, rowIndex);
+        }
+    }
+
+    public void limpiarTabla() {
+        int size = productos.size();
+        if (size > 0) {
+            productos.clear();
+            fireTableRowsDeleted(0, size - 1);
+        }
     }
 }
