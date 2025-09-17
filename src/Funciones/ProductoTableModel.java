@@ -87,4 +87,16 @@ public class ProductoTableModel extends AbstractTableModel{
             fireTableRowsDeleted(0, size - 1);
         }
     }
+
+    public Producto getProducto(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < productos.size()) {
+            return productos.get(rowIndex);
+        }
+        return null;
+    }
+
+    public List<Producto> getProductos() {
+        return new ArrayList<>(productos);
+    }
+
 }
